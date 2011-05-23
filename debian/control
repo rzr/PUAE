@@ -29,13 +29,3 @@ Description: Unix Amiga Emulator
  material and may not be freely distributed (so don't ask me for a copy).
  .
  Homepage: http://www.rcdrummond.net/uae/
-
-Package: PUAE-snapshot
-Architecture: all
-Section: sound
-Depends: PUAE (= ${source:Version}), 
-Suggests: rzr
-Priority: extra
-Description: unreleased snapshot version
- TODO: Remove on issue and upgrade PUAE
- http://rzr.online.fr/q/snapshot#PUAE Feedback welcome
