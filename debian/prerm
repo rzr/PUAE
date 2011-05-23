@@ -3,7 +3,11 @@
 set -e
 
 if test "$1" != "upgrade"; then
+<<<<<<< HEAD
     update-alternatives --remove uae /usr/bin/p-uae
+=======
+    update-alternatives --remove uae /usr/bin/e-uae
+>>>>>>> build: debian
 fi
 
 #DEBHELPER#

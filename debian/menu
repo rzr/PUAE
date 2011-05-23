@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ?package(p-uae):command="/usr/bin/p-uae"\
               title="P-UAE"\
+=======
+?package(e-uae):command="/usr/bin/e-uae"\
+              title="E-UAE"\
+>>>>>>> build: debian
               needs="X11"\
               section="Apps/Emulators"

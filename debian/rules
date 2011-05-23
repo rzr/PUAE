@@ -55,6 +55,7 @@ install: build
 	dh_testdir
 	dh_testroot
 	dh_clean -k
+<<<<<<< HEAD
 	dh_installdirs usr/share/p-uae
 	install -D src/uae debian/p-uae/usr/bin/p-uae
 	install -D src/readdisk debian/p-uae/usr/bin/p-uae_readdisk
@@ -64,6 +65,17 @@ install: build
 		debian/p-uae/usr/share/lintian/overrides/p-uae
 	install -D -m 644 debian/linda.overrides \
 		debian/p-uae/usr/share/linda/overrides/p-uae
+=======
+	dh_installdirs usr/share/e-uae
+	install -D src/uae debian/e-uae/usr/bin/e-uae
+	install -D src/readdisk debian/e-uae/usr/bin/e-uae_readdisk
+	cp -a amiga debian/e-uae/usr/share/e-uae
+	rm -rf debian/e-uae/usr/share/e-uae/amiga/source
+	install -D -m 644 debian/lintian.overrides \
+		debian/e-uae/usr/share/lintian/overrides/e-uae
+	install -D -m 644 debian/linda.overrides \
+		debian/e-uae/usr/share/linda/overrides/e-uae
+>>>>>>> build: debian
 
 binary-indep: build install
 # We have nothing to do by default.

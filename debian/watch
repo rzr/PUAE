@@ -1,2 +1,6 @@
 version=3
+<<<<<<< HEAD
 http://githubredir.debian.net/github/GnoStiC/PUAE
+=======
+http://www.rcdrummond.net/uae/ e-uae-([\d\.]+)/e-uae-\1\.tar\.bz2
+>>>>>>> build: debian
