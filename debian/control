@@ -58,6 +58,7 @@ Description: Unix Amiga Emulator
 =======
  Homepage: http://www.rcdrummond.net/uae/
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> build: debian
 =======
 
@@ -70,4 +71,6 @@ Priority: extra
 Description: unreleased snapshot version
  TODO: Remove on issue and upgrade PUAE
  http://rzr.online.fr/q/snapshot#PUAE Feedback welcome
+>>>>>>> fix: for pbuilder
+=======
 >>>>>>> fix: for pbuilder
