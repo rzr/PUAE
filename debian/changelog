@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 p-uae (0.0.0-0) UNRELEASED; urgency=low
 
   * Changed package name to p-uae.
@@ -11,6 +12,8 @@ e-uae (0.0.20110523-0ubuntu0~rzr3) maverick; urgency=low
 
  -- Philippe Coval <rzr@gna.org>  Mon, 23 May 2011 12:41:38 +0200
 
+>>>>>>> fix: for pbuilder
+=======
 >>>>>>> fix: for pbuilder
 e-uae (0.0.0-0) UNRELEASED; urgency=low
 
