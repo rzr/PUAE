@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 p-uae: executable-not-elf-or-script
+=======
+e-uae: executable-not-elf-or-script
+>>>>>>> build: debian
