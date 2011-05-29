@@ -1,6 +1,10 @@
 Tag: exec-not-elf-or-script
 <<<<<<< HEAD
+<<<<<<< HEAD
 Data: /usr/share/p-uae/amiga/*
 =======
 Data: /usr/share/e-uae/amiga/*
 >>>>>>> build: debian
+=======
+Data: /usr/share/p-uae/amiga/*
+>>>>>>>   * Changed package name to p-uae.

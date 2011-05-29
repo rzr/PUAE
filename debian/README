@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 The Debian Package P-UAE
 =======
 The Debian Package e-uae
 >>>>>>> build: debian
+=======
+The Debian Package p-uae
+>>>>>>>   * Changed package name to p-uae.
 ------------------------
 
 Comments regarding the Package
