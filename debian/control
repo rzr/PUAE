@@ -8,8 +8,7 @@ Build-Depends: debhelper (>= 5),
  autotools-dev,
  aclocal,
  autoconf, 
- automake,
- autoheaders
+ automake
 Standards-Version: 3.6.2
 
 Package: e-uae
