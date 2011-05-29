@@ -56,11 +56,15 @@ install: build
 	dh_testroot
 	dh_clean -k
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>>   * Changed package name to p-uae.
 	dh_installdirs usr/share/p-uae
 	install -D src/uae debian/p-uae/usr/bin/p-uae
 	install -D src/readdisk debian/p-uae/usr/bin/p-uae_readdisk
 	cp -a amiga debian/p-uae/usr/share/p-uae
 	rm -rf debian/p-uae/usr/share/p-uae/amiga/source
+<<<<<<< HEAD
 	install -D -m 644 debian/lintian.overrides \
 		debian/p-uae/usr/share/lintian/overrides/p-uae
 	install -D -m 644 debian/linda.overrides \
@@ -71,11 +75,17 @@ install: build
 	install -D src/readdisk debian/e-uae/usr/bin/e-uae_readdisk
 	cp -a amiga debian/e-uae/usr/share/e-uae
 	rm -rf debian/e-uae/usr/share/e-uae/amiga/source
+=======
+>>>>>>>   * Changed package name to p-uae.
 	install -D -m 644 debian/lintian.overrides \
-		debian/e-uae/usr/share/lintian/overrides/e-uae
+		debian/p-uae/usr/share/lintian/overrides/p-uae
 	install -D -m 644 debian/linda.overrides \
+<<<<<<< HEAD
 		debian/e-uae/usr/share/linda/overrides/e-uae
 >>>>>>> build: debian
+=======
+		debian/p-uae/usr/share/linda/overrides/p-uae
+>>>>>>>   * Changed package name to p-uae.
 
 binary-indep: build install
 # We have nothing to do by default.

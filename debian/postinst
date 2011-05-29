@@ -3,9 +3,13 @@
 set -e
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 update-alternatives --install /usr/bin/uae uae /usr/bin/p-uae 80
 =======
 update-alternatives --install /usr/bin/uae uae /usr/bin/e-uae 80
 >>>>>>> build: debian
+=======
+update-alternatives --install /usr/bin/uae uae /usr/bin/p-uae 80
+>>>>>>>   * Changed package name to p-uae.
 
 #DEBHELPER#

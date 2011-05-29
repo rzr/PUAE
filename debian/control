@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Source: p-uae
 Section: contrib/otherosfs
 Priority: optional
@@ -14,6 +15,9 @@ Standards-Version: 3.6.2
 Package: p-uae
 =======
 Source: e-uae
+=======
+Source: p-uae
+>>>>>>>   * Changed package name to p-uae.
 Section: contrib/otherosfs
 Priority: optional
 Maintainer: Richard Drummond <uae@rcdrummond.net>
@@ -26,8 +30,12 @@ Build-Depends: debhelper (>= 5),
  automake
 Standards-Version: 3.6.2
 
+<<<<<<< HEAD
 Package: e-uae
 >>>>>>> build: debian
+=======
+Package: p-uae
+>>>>>>>   * Changed package name to p-uae.
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Provides: uae, uae-sdl

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ?package(p-uae):command="/usr/bin/p-uae"\
               title="P-UAE"\
 =======
 ?package(e-uae):command="/usr/bin/e-uae"\
+=======
+?package(p-uae):command="/usr/bin/p-uae"\
+>>>>>>>   * Changed package name to p-uae.
               title="E-UAE"\
 >>>>>>> build: debian
               needs="X11"\
