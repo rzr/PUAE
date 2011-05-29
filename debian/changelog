@@ -1,5 +1,6 @@
-e-uae (0.0.0-0) UNRELEASED; urgency=low
+p-uae (0.0.0-0) UNRELEASED; urgency=low
 
+  * Changed package name to p-uae.
   * http://rzr.online.fr/q/amiga
 
  -- Philippe Coval <rzr@gna.org>  Mon, 23 May 2011 11:43:36 +0200

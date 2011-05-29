@@ -3,7 +3,7 @@
 set -e
 
 if test "$1" != "upgrade"; then
-    update-alternatives --remove uae /usr/bin/e-uae
+    update-alternatives --remove uae /usr/bin/p-uae
 fi
 
 #DEBHELPER#

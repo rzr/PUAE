@@ -1,4 +1,4 @@
-?package(e-uae):command="/usr/bin/e-uae"\
+?package(p-uae):command="/usr/bin/p-uae"\
               title="E-UAE"\
               needs="X11"\
               section="Apps/Emulators"

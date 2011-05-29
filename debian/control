@@ -1,4 +1,4 @@
-Source: e-uae
+Source: p-uae
 Section: contrib/otherosfs
 Priority: optional
 Maintainer: Richard Drummond <uae@rcdrummond.net>
@@ -11,7 +11,7 @@ Build-Depends: debhelper (>= 5),
  automake
 Standards-Version: 3.6.2
 
-Package: e-uae
+Package: p-uae
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Provides: uae, uae-sdl
