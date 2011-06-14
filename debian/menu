@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 ?package(p-uae):command="/usr/bin/p-uae"\
               title="P-UAE"\
+<<<<<<< HEAD
 =======
 ?package(e-uae):command="/usr/bin/e-uae"\
 =======
@@ -9,5 +10,7 @@
 >>>>>>>   * Changed package name to p-uae.
               title="E-UAE"\
 >>>>>>> build: debian
+=======
+>>>>>>> merge: upstream
               needs="X11"\
               section="Apps/Emulators"
