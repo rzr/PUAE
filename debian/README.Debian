@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 P-UAE for Debian
 ----------------
 
@@ -9,6 +10,12 @@ E-UAE for Debian
 
 Currently this build of E-UAE does not support the SCSI emulation. This will
 >>>>>>> build: debian
+=======
+P-UAE for Debian
+----------------
+
+Currently this build of P-UAE does not support the SCSI emulation. This will
+>>>>>>> merge: upstream
 be addressed eventually.
 
 Additionally, this package is missing support for IPF floppy images as the
