@@ -204,7 +204,7 @@ void audio_sampleripper (int mode)
 	while (rs) {
 		if (rs->changed) {
 			rs->changed = 0;
-			fetch_ripperpath (path, sizeof (path));
+			fetch_ripperpath (path, sizeof (path) / sizeof (TCHAR));
 			name[0] = 0;
 			if (currprefs.floppyslots[0].dfxtype >= 0)
 				_tcscpy (name, currprefs.floppyslots[0].df);
@@ -1221,7 +1221,7 @@ STATIC_INLINE void setdr (int nr)
 	}
 }
 
-static void loaddat (int nr, bool modper)
+static void loaddat_modper (int nr, bool modper)
 {
 	struct audio_channel_data *cdp = audio_channel + nr;
 	int audav = adkcon & (0x01 << nr);
@@ -1256,6 +1256,10 @@ static void loaddat (int nr, bool modper)
 #endif
 		cdp->dat2 = cdp->dat;
 	}
+}
+static void loaddat (int nr)
+{
+	loaddat_modper (nr, false);
 }
 
 STATIC_INLINE void loadper (int nr)
@@ -1332,7 +1336,7 @@ static void audio_state_channel2 (int nr, bool perfin)
 		} else if (cdp->dat_written && !isirq (nr)) {
 			cdp->state = 2;
 			setirq (nr, 0);
-			loaddat (nr, false);
+			loaddat (nr);
 			if (usehacks () && cdp->per < 10 * CYCLE_UNIT) {
 				// make sure audio.device AUDxDAT startup returns to idle state before DMA is enabled
 				newsample (nr, (cdp->dat2 >> 0) & 0xff);
@@ -1378,7 +1382,7 @@ static void audio_state_channel2 (int nr, bool perfin)
 		if (debugchannel (nr))
 			write_log ("%d:>5: LEN=%d PT=%08X PC=%08X\n", nr, cdp->wlen, cdp->pt, M68K_GETPC);
 #endif
-		loaddat (nr, false);
+		loaddat (nr);
 		if (napnav)
 			setdr (nr);
 		cdp->state = 2;
@@ -1400,7 +1404,7 @@ static void audio_state_channel2 (int nr, bool perfin)
 		if (!perfin)
 			return;
 		if (audap)
-			loaddat (nr, true);
+			loaddat_modper (nr, true);
 		if (chan_ena) {
 			if (audap)
 				setdr (nr);
@@ -1428,7 +1432,7 @@ static void audio_state_channel2 (int nr, bool perfin)
 		if (!perfin)
 			return;
 		if (chan_ena) {
-			loaddat (nr, false);
+			loaddat (nr);
 			if (cdp->intreq2 && napnav)
 				setirq (nr, 31);
 			if (napnav)
@@ -1442,7 +1446,7 @@ static void audio_state_channel2 (int nr, bool perfin)
 				zerostate (nr);
 				return;
 			}
-			loaddat (nr, false);
+			loaddat (nr);
 			if (napnav)
 				setirq (nr, 32);
 		}
@@ -1627,8 +1631,8 @@ void set_audio (void)
 	delay = currprefs.sound_mixed_stereo_delay = changed_prefs.sound_mixed_stereo_delay;
 	mixed_mul1 = MIXED_STEREO_SCALE / 2 - sep;
 	mixed_mul2 = MIXED_STEREO_SCALE / 2 + sep;
-	mixed_stereo_size = delay > 0 ? (1 << (delay - 1)) - 1 : 0;
-	mixed_on = (sep > 0 && sep < MIXED_STEREO_MAX) || mixed_stereo_size > 0;
+	mixed_stereo_size = delay > 0 ? (1 << delay) - 1 : 0;
+	mixed_on = sep < MIXED_STEREO_MAX || mixed_stereo_size > 0;
 	if (mixed_on && old_mixed_size != mixed_stereo_size) {
 		saved_ptr = 0;
 		memset (right_word_saved, 0, sizeof right_word_saved);
@@ -1816,7 +1820,7 @@ void audio_hsync (void)
 	update_audio ();
 }
 
-void AUDxDAT (int nr, uae_u16 v, uaecptr addr)
+void AUDxDAT_addr (int nr, uae_u16 v, uaecptr addr)
 {
 	struct audio_channel_data *cdp = audio_channel + nr;
 	int chan_ena = (dmacon & DMA_MASTER) && (dmacon & (1 << nr));
@@ -1856,6 +1860,10 @@ void AUDxDAT (int nr, uae_u16 v, uaecptr addr)
 		events_schedule ();
 	}
 	cdp->dat_written = false;
+}
+void AUDxDAT (int nr, uae_u16 v)
+{
+	AUDxDAT_addr (nr, v, 0xffffffff);
 }
 
 uaecptr audio_getpt (int nr, bool reset)

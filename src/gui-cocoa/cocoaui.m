@@ -73,12 +73,12 @@ static unsigned long memsizes[] = {
         /* 21*/ 0xC0000000, //3GB
 };
 
-static int quickstart_model = 0, quickstart_conf = 0, quickstart_compa = 1;
-static int quickstart_floppy = 1, quickstart_cd = 0, quickstart_ntsc = 0;
-static int quickstart_cdtype = 0;
-static char quickstart_cddrive[16];
-static int quickstart_ok, quickstart_ok_floppy;
-
+int quickstart_model = 0, quickstart_conf = 0, quickstart_compa = 1;
+int quickstart_floppy = 1, quickstart_cd = 0, quickstart_ntsc = 0;
+int quickstart_cdtype = 0;
+char quickstart_cddrive[16];
+int quickstart_ok, quickstart_ok_floppy;
+extern TCHAR config_filename[256];
 //----------
 
 #import <Cocoa/Cocoa.h>
@@ -95,7 +95,6 @@ extern NSString *getApplicationName(void);
 /* Prototypes */
 int ensureNotFullscreen (void);
 void restoreFullscreen (void);
-void lossyASCIICopy (char *buffer, NSString *source, size_t maxLength);
 
 /* Globals */
 static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFullscreen()
@@ -203,7 +202,6 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 	
 	[self createMenuItemInMenu:vAmigaMenu withTitle:@"Reset" action:@selector(resetAmiga:) tag:0];
 	[self createMenuItemInMenu:vAmigaMenu withTitle:@"Hard Reset" action:@selector(resetAmiga:) tag:1];
-//	[self createMenuItemInMenu:vAmigaMenu withTitle:@"Hebe" action:@selector(hebeHebe:) tag:0];
 //	[self createMenuItemInMenu:vAmigaMenu withTitle:@"Pause" action:@selector(pauseAmiga:) tag:0];
 	
 #ifdef ACTION_REPLAY
@@ -540,7 +538,6 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 	[menuItem release];
 	// SOUND MENU END
 
-
 	// Create a menu for changing aspects of emulator control
 	NSMenu *controlMenu = [[NSMenu alloc] initWithTitle:@"Control"];
 
@@ -646,7 +643,6 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 		// There's a disk in the drive, show its name in the menu item
 		NSString *diskImage = [[NSString stringWithCString:gui_data.df[tag] encoding:NSASCIIStringEncoding] lastPathComponent];
 		[menuItem setTitle:[NSString stringWithFormat:@"DF%d (%@)",tag,diskImage]];
-		//if (canSetHidden) [menuItem setHidden:NO];
 		return YES;
 	}
 
@@ -1040,8 +1036,7 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 	NSString *nsfloppypath = [[NSUserDefaults standardUserDefaults] stringForKey:@"LastUsedDiskImagePath"];
 	
 	/* If the configuration includes a setting for the "floppy_path" attribute
-	 * start the OpenPanel in that directory.. but only the first time.
-	 */
+	 * start the OpenPanel in that directory.. but only the first time. */
 	static int run_once = 0;
 	if (!run_once) {
 		run_once++;
@@ -1053,8 +1048,7 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 			snprintf(homedir, MAX_PATH, "%s/", getenv("HOME"));
 			
 			/* The default value for floppy_path is "$HOME/". We only want to use it if the
-			 * user provided an actual value though, so we don't use it if it equals "$HOME/"
-			 */
+			 * user provided an actual value though, so we don't use it if it equals "$HOME/" */
 			if (strncmp(floppy_path, homedir, MAX_PATH) != 0)
 				nsfloppypath = [NSString stringWithCString:floppy_path encoding:NSASCIIStringEncoding];
 		}
@@ -1083,8 +1077,9 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 	if ((drive >= 0) && (drive < 4)) {
 		NSArray *files = [sheet filenames];
 		NSString *file = [files objectAtIndex:0];
-		
-		lossyASCIICopy (changed_prefs.floppyslots[drive].df, file, COCOA_GUI_MAX_PATH);
+		char *sfile = [file UTF8String];
+		strcpy(changed_prefs.floppyslots[drive].df, sfile);
+		write_log ("Selected Disk Image: %s for Drive: %d\n", sfile, drive);
 		
 		// Save the path of this disk image so that future open panels can start in the same directory
 		[[NSUserDefaults standardUserDefaults] setObject:[file stringByDeletingLastPathComponent] forKey:@"LastUsedDiskImagePath"];
@@ -1142,7 +1137,9 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 
 	NSArray *files = [sheet filenames];
 	NSString *file = [files objectAtIndex:0];
-	lossyASCIICopy (changed_prefs.romfile, file, COCOA_GUI_MAX_PATH);
+	char *sfile = [file UTF8String];
+	strcpy(changed_prefs.romfile, sfile);
+	write_log ("Selected Kickrom: %s\n", sfile);
 		
 	[[NSUserDefaults standardUserDefaults] setObject:[file stringByDeletingLastPathComponent] forKey:@"LastUsedKickPath"];
 }
@@ -1198,7 +1195,9 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 
 	NSArray *files = [sheet filenames];
 	NSString *file = [files objectAtIndex:0];
-	lossyASCIICopy (changed_prefs.flashfile, file, COCOA_GUI_MAX_PATH);
+	char *sfile = [file UTF8String];
+	strcpy(changed_prefs.flashfile, sfile);
+	write_log ("Selected Flash RAM: %s\n", sfile);
 		
 	[[NSUserDefaults standardUserDefaults] setObject:[file stringByDeletingLastPathComponent] forKey:@"LastUsedFlashPath"];
 }
@@ -1254,7 +1253,9 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 
 	NSArray *files = [sheet filenames];
 	NSString *file = [files objectAtIndex:0];
-	lossyASCIICopy (changed_prefs.cartfile, file, COCOA_GUI_MAX_PATH);
+	char *sfile = [file UTF8String];
+	strcpy(changed_prefs.cartfile, sfile);
+	write_log ("Selected Cartridge: %s\n", sfile);
 		
 	[[NSUserDefaults standardUserDefaults] setObject:[file stringByDeletingLastPathComponent] forKey:@"LastUsedCartPath"];
 }
@@ -1294,7 +1295,6 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 		}
 	}
 
-//                             types:SaveStateTypes
     [oPanel beginSheetForDirectory:nssavestatepath file:@""
                     modalForWindow:[NSApp mainWindow]
                      modalDelegate:self
@@ -1309,12 +1309,12 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 
 	NSArray *files = [sheet filenames];
 	NSString *file = [files objectAtIndex:0];
-//	lossyASCIICopy (changed_prefs.cartfile, file, COCOA_GUI_MAX_PATH);
+	char *sfile = [file UTF8String];
+	write_log ("Loading SaveState from: %s ...", sfile);
 
 	[[NSUserDefaults standardUserDefaults] setObject:[file stringByDeletingLastPathComponent] forKey:@"LastUsedSaveStatePath"];
 
-	write_log ("Loading SaveState from: %s ...", file);
-	savestate_initsave (file, 0, 0, 0);
+	savestate_initsave (sfile, 0, 0, 0);
 	savestate_state = STATE_DORESTORE;
 	write_log ("done\n");
 }
@@ -1346,43 +1346,27 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
 
 	NSString *file = [sheet filename];
 	char *sfile = [file UTF8String];
+	write_log ("Saving SaveState to: %s ...", sfile);
 
 	[[NSUserDefaults standardUserDefaults] setObject:[file stringByDeletingLastPathComponent] forKey:@"LastUsedSaveStatePath"];
 
-	write_log ("Saving SaveState to: %s ...", sfile);
 //	savestate_initsave (sfile, 0, 0, 0);
 	save_state (sfile, "puae");
 	write_log ("done\n");
 }
 
-/*
+
 - (void)QuickStart:(id)sender
 {
 	unsigned int romcheck = 0;
 	quickstart_model = [((NSMenuItem*)sender) tag];
-	quickstart_conf = 0;
-	quickstart_compa = 0;
 
 	changed_prefs.nr_floppies = quickstart_floppy;
 	quickstart_ok = built_in_prefs (&changed_prefs, quickstart_model, quickstart_conf, quickstart_compa, romcheck);
-
-	uae_reset(0);
-}
-*/
-
-- (void)hebeHebe:(id)sender
-{
-	NSRect frame = NSMakeRect(100, 100, 200, 200);
-	NSUInteger styleMask;
-	NSRect rect = [NSWindow contentRectForFrameRect:frame styleMask:styleMask];
-	NSWindow *window = [[NSWindow alloc] initWithContentRect:rect styleMask:styleMask backing:NSBackingStoreBuffered defer:false];
-	[window center];
-	[window makeKeyAndOrderFront: window];
-
-/*	NSTabViewItem* item=[[NSTabViewItem alloc] initWithIdentifier:identifier];
-	[item setLabel:label];
-	[item setView:newView];
-	[tabView addTabViewItem:item];*/
+	changed_prefs.ntscmode = quickstart_ntsc != 0;
+	//quickstart_cd = chnaged_prefs.floppyslots[1].dfxtype == DRV_NONE && (quickstart_model == 8 || quickstart_model == 9);
+    config_filename[0] = 0;
+	//uae_reset(0);
 }
 
 - (void)resetAmiga:(id)sender
@@ -1624,7 +1608,7 @@ static BOOL wasFullscreen = NO; // used by ensureNotFullscreen() and restoreFull
                 changed_prefs.sound_filter = 2;
                 changed_prefs.sound_filter_type = 1;
                 break;
-        }
+	}
 	config_changed = 1;
 }
 
@@ -1696,30 +1680,6 @@ void restoreFullscreen (void)
 		toggle_fullscreen(0);
 
 	wasFullscreen = NO;
-}
-
-/* Make a null-terminated copy of the source NSString into buffer using lossy
- * ASCII conversion. (Apple deprecated the 'lossyCString' method in NSString)
- */
-void lossyASCIICopy (char *buffer, NSString *source, size_t maxLength)
-{
-	if (source == nil) {
-		buffer[0] = '\0';
-		return;
-	}
-	
-	NSData *data = [source dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	
-	if (data == nil) {
-		buffer[0] = '\0';
-		return;
-	}
-	
-	[data getBytes:buffer length:maxLength];
-	
-	/* Ensure null termination */
-	NSUInteger len = [data length];
-	buffer[(len >= maxLength) ? (maxLength - 1) : len] = '\0';
 }
 
 /* This function is called from od-macosx/main.m
