@@ -1,26 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 The Debian Package P-UAE
-=======
-The Debian Package e-uae
->>>>>>> build: debian
-=======
-The Debian Package p-uae
->>>>>>>   * Changed package name to p-uae.
-=======
-The Debian Package P-UAE
->>>>>>> merge: upstream
 ------------------------
 
 Comments regarding the Package
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 Mustafa Tufan <mustafa.tufan@gmail.com>, Mon, 30 May 2011 11:25:00 +0200
-=======
-Richard Drummond <uae@rcdrummond.net>, Tue, 18 Nov 2003 15:48:00 -0500
->>>>>>> build: debian
-=======
-Mustafa Tufan <mustafa.tufan@gmail.com>, Mon, 30 May 2011 11:25:00 +0200
->>>>>>> merge: upstream

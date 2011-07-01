@@ -1,14 +1,2 @@
 version=3
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 http://githubredir.debian.net/github/GnoStiC/PUAE
-=======
-http://www.rcdrummond.net/uae/ e-uae-([\d\.]+)/e-uae-\1\.tar\.bz2
->>>>>>> build: debian
-=======
-http://www.rcdrummond.net/uae/ p-uae-([\d\.]+)/p-uae-\1\.tar\.bz2
->>>>>>>   * Changed package name to p-uae.
-=======
-http://githubredir.debian.net/github/GnoStiC/PUAE
->>>>>>> merge: upstream

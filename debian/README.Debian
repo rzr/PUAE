@@ -1,29 +1,13 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 P-UAE for Debian
 ----------------
 
 Currently this build of P-UAE does not support the SCSI emulation. This will
-=======
-E-UAE for Debian
-----------------
-
-Currently this build of E-UAE does not support the SCSI emulation. This will
->>>>>>> build: debian
-=======
-P-UAE for Debian
-----------------
-
-Currently this build of P-UAE does not support the SCSI emulation. This will
->>>>>>> merge: upstream
 be addressed eventually.
 
 Additionally, this package is missing support for IPF floppy images as the
 corresponding header files are distributed under a disputable license.
 However, the package build system is configured to use these headers if they
 are present, so all you need to do is download the package source via
-<<<<<<< HEAD
-<<<<<<< HEAD
 | $ apt-get source p-uae
 (works only if you have a working deb-src line in your /etc/apt/sources.list)
 install all packages needed for a rebuild via
@@ -31,22 +15,6 @@ install all packages needed for a rebuild via
 download the IPF Access API tarball from http://www.softpres.org/
 and copy the include/caps directory included therein into the src/include
 directory in your private p-uae build tree. From this tree, now execute
-=======
-| $ apt-get source e-uae
-=======
-| $ apt-get source p-uae
->>>>>>>   * Changed package name to p-uae.
-(works only if you have a working deb-src line in your /etc/apt/sources.list)
-install all packages needed for a rebuild via
-| $ apt-get build-dep p-uae; apt-get install build-essential fakeroot
-download the IPF Access API tarball from http://www.softpres.org/
-and copy the include/caps directory included therein into the src/include
-<<<<<<< HEAD
-directory in your private e-uae build tree. From this tree, now execute
->>>>>>> build: debian
-=======
-directory in your private p-uae build tree. From this tree, now execute
->>>>>>>   * Changed package name to p-uae.
 | $ dpkg-buildpackage -rfakeroot -uc -B
 and you will get a shiny new package with support for IPF floppy images,
 just right for installation via "dpkg -i packagename.deb" (as root).
