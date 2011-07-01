@@ -1,3 +1,5 @@
+# File: p-uae.spec
+# Upstream: ftp://rpmfind.net/linux/Mandriva/devel/cooker/SRPMS/contrib/release/p-uae-2.3.2-1.gita2b6937.1.src.rpm
 %define Werror_cflags	%nil
 %define cdrname		cdrtools
 %define cdrmainvers	2.01
@@ -50,6 +52,7 @@ cd src/tools
 aclocal
 autoconf
 
+
 %build
 
 ./bootstrap.sh
@@ -61,7 +64,8 @@ autoconf
 	--enable-gayle \
 	--enable-scsi-device --enable-ncr --enable-a2091 \
 	--with-caps --enable-amax
-make
+
+make CFLAGS="-std=gnu99"
 
 
 %install
