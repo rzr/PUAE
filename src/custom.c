@@ -3021,11 +3021,7 @@ void init_custom (void)
 	update_mirrors();
 	create_cycle_diagram_table ();
 	reset_drawing ();
-<<<<<<< HEAD
 	init_hz ();
-=======
-	init_hz_full ();
->>>>>>> merge: upstream
 	calcdiw ();
 }
 

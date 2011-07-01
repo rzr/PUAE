@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 Source: p-uae
 Section: contrib/otherosfs
 Priority: optional
 Maintainer: Mustafa Tufan <mustafa.tufan@gmail.com>
-<<<<<<< HEAD
 Uploaders: Florian Ernst <florian@debian.org>
 Build-Depends: debhelper (>= 5),
  libgtk2.0-dev, libsdl1.2-dev, zlib1g-dev, 
@@ -14,83 +11,18 @@ Build-Depends: debhelper (>= 5),
 Standards-Version: 3.6.2
 
 Package: p-uae
-=======
-Source: e-uae
-=======
-Source: p-uae
->>>>>>>   * Changed package name to p-uae.
-Section: contrib/otherosfs
-Priority: optional
-Maintainer: Richard Drummond <uae@rcdrummond.net>
-=======
->>>>>>> merge: upstream
-Uploaders: Florian Ernst <florian@debian.org>
-Build-Depends: debhelper (>= 5),
- libgtk2.0-dev, libsdl1.2-dev, zlib1g-dev, 
- autotools-dev,
- autoconf, 
- automake
-Standards-Version: 3.6.2
-
-<<<<<<< HEAD
-Package: e-uae
->>>>>>> build: debian
-=======
-Package: p-uae
->>>>>>>   * Changed package name to p-uae.
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Provides: uae, uae-sdl
 Description: Unix Amiga Emulator
-<<<<<<< HEAD
-<<<<<<< HEAD
  This is a fork of E-UAE, the Ubiquitous Amiga Emulator, with an emulation core
  based on WinUAE. It attempts to bring many of the great features of WinUAE
  to non-Windows platforms. P-UAE was meant to be a Pandora Amiga emulator,
  thus P-UAE, but later become the 'Portable' UAE.
  .
  To make full use of P-UAE you will need access to an image of some version
-=======
- This is a fork of UAE, the Ubiquitous Amiga Emulator, with an emulation core
-=======
- This is a fork of E-UAE, the Ubiquitous Amiga Emulator, with an emulation core
->>>>>>> merge: upstream
- based on WinUAE. It attempts to bring many of the great features of WinUAE
- to non-Windows platforms. P-UAE was meant to be a Pandora Amiga emulator,
- thus P-UAE, but later become the 'Portable' UAE.
- .
-<<<<<<< HEAD
- To make full use of E-UAE you will need access to an image of some version
->>>>>>> build: debian
-=======
- To make full use of P-UAE you will need access to an image of some version
->>>>>>> merge: upstream
  of the Amiga Kickstart ROM (although UAE does include a ROM emulation which
  may work with some old games). The Amiga Kickstart ROMs are copyrighted
  material and may not be freely distributed (so don't ask me for a copy).
  .
-<<<<<<< HEAD
-<<<<<<< HEAD
  Homepage: https://github.com/GnoStiC/PUAE
-=======
- Homepage: http://www.rcdrummond.net/uae/
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> build: debian
-=======
-
-Package: PUAE-snapshot
-Architecture: all
-Section: sound
-Depends: PUAE (= ${source:Version}), 
-Suggests: rzr
-Priority: extra
-Description: unreleased snapshot version
- TODO: Remove on issue and upgrade PUAE
- http://rzr.online.fr/q/snapshot#PUAE Feedback welcome
->>>>>>> fix: for pbuilder
-=======
->>>>>>> fix: for pbuilder
-=======
- Homepage: https://github.com/GnoStiC/PUAE
->>>>>>> merge: upstream

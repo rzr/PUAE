@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 p-uae: executable-not-elf-or-script
-=======
-e-uae: executable-not-elf-or-script
->>>>>>> build: debian
-=======
-p-uae: executable-not-elf-or-script
->>>>>>>   * Changed package name to p-uae.
