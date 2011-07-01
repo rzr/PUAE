@@ -12,12 +12,16 @@ Version: 0.0.0
 Release: 0
 URL: http://sourceforge.net/projects/uaedev/
 Source0: %{name}-%{version}.tar.gz
+Source1: %{name}.desktop
 License: GPL
 Group: Emulators
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-BuildRequires: gtk+2-devel
-BuildRequires: SDL-devel
-BuildRequires: GL-devel
+BuildRequires: gtk2-devel
+BuildRequires: SDL_image-devel
+BuildRequires: SDL_mixer-devel
+BuildRequires: desktop-file-utils
+BuildRequires: mesa-libGL-devel
+
 Conflicts: uae
 Obsoletes: uaedev
 Provides: uaedev
@@ -39,7 +43,7 @@ with the aim of bringing the features of WinUAE to non-Windows platforms
 such as Linux, Mac OS X and BeOS.]
 
 %prep
-%setup -q -n p-uae-%{version}.%{wiprel} 
+%setup -q -n p-uae-%{version}
 
 aclocal -I m4 && automake --foreign --add-missing && autoconf
 cd src/tools
@@ -49,7 +53,7 @@ autoconf
 %build
 
 ./bootstrap.sh
-%configure2_5x \
+./configure \
 	 --with-sdl --with-sdl-gl --with-sdl-gfx --with-sdl-sound --enable-drvsnd \
 	--with-gtk \
 	--enable-cd32 \
@@ -67,16 +71,8 @@ mkdir -p $RPM_BUILD_ROOT%{_prefix}/bin \
 cp -pR amiga/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/.
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Name=UAE
-Comment=Amiga Emulator
-Exec=%{_bindir}/uae
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=GNOME;GTK;Emulator;
-EOF
+cp %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop 
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
