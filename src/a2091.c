@@ -1328,7 +1328,7 @@ void a2091_init (void)
 	int roms[5];
 	struct romlist *rl;
 	struct romdata *rd;
-
+	int i=0;
 	configured = 0;
 	memset (dmacmemory, 0xff, 100);
 	ew (0x00, 0xc0 | 0x01 | 0x10);
@@ -1361,7 +1361,6 @@ void a2091_init (void)
 		z = read_rom (&rd);
 		if (z) {
 			int slotsize = 65536;
-			unsigned int i;
 			write_log ("A590/A2091 BOOT ROM %d.%d ", rd->ver, rd->rev);
 			rom_size = rd->size;
 			rom = xmalloc (uae_u8, slotsize);

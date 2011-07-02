@@ -7,8 +7,6 @@
  *           2010 Mustafa TUFAN
  */
 
-#ifdef A2065
-
 #include "sysconfig.h"
 
 #include <stdio.h>
@@ -31,7 +29,7 @@ static int enumerated;
 
 struct uaenetdatawin32
 {
-	int evttw;
+	HANDLE evttw;
 	void *readdata, *writedata;
 
 	uae_sem_t change_sem;
@@ -331,7 +329,7 @@ struct netdriverdata *uaenet_enumerate (struct netdriverdata **out, const TCHAR 
 					tc->mac[0], tc->mac[1], tc->mac[2],
 					tc->mac[3], tc->mac[4], tc->mac[5], cnt++);
 				tc->active = 1;
-				tc->mtu = 1522;
+				tc->mtu = 1500;
 				tc->name = au (d->name);
 				tc->desc = au (d->description);
 			} else {
@@ -362,4 +360,3 @@ void uaenet_close_driver (struct netdriverdata *tc)
 	}
 }
 
-#endif

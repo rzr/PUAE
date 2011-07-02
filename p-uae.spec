@@ -13,8 +13,9 @@ Name: p-uae
 Version: 0.0.0
 Release: 0
 URL: http://sourceforge.net/projects/uaedev/
-Source0: %{name}_%{version}.orig.tar.gz
-Source1: %{name}.desktop
+Source0: http://rzr.online.fr/ubuntu/pool/main/p/p-uae/%{name}_%{version}.orig.tar.gz
+#Source1: %{name}.desktop
+Patch0: http://rzr.online.fr/ubuntu/pool/main/p/p-uae/%{name}_%{version}-%{release}.diff.gz
 License: GPL
 Group: Emulators
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
@@ -30,12 +31,12 @@ Conflicts: uae
 
 %description
 UAE is a software emulation of the Amiga system hardware, which
-enables you to run most available Amiga software.  Since it is a
-software emulation, no extra or special hardware is needed.  The Amiga
-hardware is emulated accurately, so that Amiga software is tricked
-into thinking it is running on the real thing.  Your computer's
-display, keyboard, hard disk and mouse assume the roles of their
-emulated counterparts.
+enables you to run most available Amiga software. 
+Since it is a software emulation, no extra or special hardware is needed.
+The Amiga hardware is emulated accurately, so that Amiga software is tricked
+into thinking it is running on the real thing.  
+Your computer's display, keyboard, hard disk and mouse 
+assume the roles of their emulated counterparts.
 
 Note that to fully emulate the Amiga you need the Amiga KickStart ROM
 images, which are copyrighted and, of course, not included here.
@@ -44,9 +45,11 @@ images, which are copyrighted and, of course, not included here.
 with the aim of bringing the features of WinUAE to non-Windows platforms
 such as Linux, Mac OS X and BeOS.]
 
-%prep
+  
+%prep  
 %setup -q -n p-uae-%{version}
-
+%patch0 -p1  
+  
 aclocal -I m4 && automake --foreign --add-missing && autoconf
 cd src/tools
 aclocal
@@ -78,6 +81,7 @@ cp -pRv amiga/programs/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs/
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 #cp %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop 
+cp -a %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop 
 
 
 %clean
