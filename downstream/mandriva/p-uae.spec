@@ -1,5 +1,3 @@
-# File: p-uae.spec
-# Upstream: ftp://rpmfind.net/linux/Mandriva/devel/cooker/SRPMS/contrib/release/p-uae-2.3.2-1.gita2b6937.1.src.rpm
 %define Werror_cflags	%nil
 %define cdrname		cdrtools
 %define cdrmainvers	2.01
@@ -10,23 +8,19 @@
 
 Summary: A software emulation of the Amiga system
 Name: p-uae
-Version: 0.0.0
-Release: 0
+Version: 2.3.2
+Release: %mkrel 1.%{wiprel}.1
 URL: http://sourceforge.net/projects/uaedev/
-Source0: %{name}_%{version}.orig.tar.gz
-Source1: %{name}.desktop
+Source0: %{name}-%{version}.%{wiprel}.tar.xz
 License: GPL
 Group: Emulators
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-BuildRequires: gtk2-devel
-BuildRequires: SDL_image-devel
-BuildRequires: SDL_mixer-devel
-BuildRequires: desktop-file-utils
-BuildRequires: mesa-libGL-devel
-
+BuildRequires: gtk+2-devel
+BuildRequires: SDL-devel
+BuildRequires: GL-devel
 Conflicts: uae
-#Obsoletes: uaedev
-#Provides: uaedev
+Obsoletes: uaedev
+Provides: uaedev
 
 %description
 UAE is a software emulation of the Amiga system hardware, which
@@ -45,27 +39,24 @@ with the aim of bringing the features of WinUAE to non-Windows platforms
 such as Linux, Mac OS X and BeOS.]
 
 %prep
-%setup -q -n p-uae-%{version}
+%setup -q -n p-uae-%{version}.%{wiprel} 
 
 aclocal -I m4 && automake --foreign --add-missing && autoconf
 cd src/tools
 aclocal
 autoconf
 
-
 %build
 
 ./bootstrap.sh
-./configure \
-	--with-sdl --with-sdl-gl --with-sdl-gfx --with-sdl-sound \
-        --enable-drvsnd \
+%configure2_5x \
+	 --with-sdl --with-sdl-gl --with-sdl-gfx --with-sdl-sound --enable-drvsnd \
 	--with-gtk \
 	--enable-cd32 \
 	--enable-gayle \
 	--enable-scsi-device --enable-ncr --enable-a2091 \
 	--with-caps --enable-amax
-
-make CFLAGS="-std=gnu99"
+make
 
 
 %install
@@ -73,12 +64,19 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/bin \
 	$RPM_BUILD_ROOT%{_libdir}/uae/amiga/source
 %makeinstall
-install -d $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs/
-cp -pRv amiga/programs/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs/
+cp -pR amiga/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/.
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-#cp %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop 
-
+cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+[Desktop Entry]
+Name=UAE
+Comment=Amiga Emulator
+Exec=%{_bindir}/uae
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Emulator;
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,17 +86,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/*
 %{_bindir}/*
 %{_libdir}/uae
-#%{_datadir}/applications/mandriva-%{name}.desktop
+%{_datadir}/applications/mandriva-%{name}.desktop
 %doc docs/*
 
 
 
 
 %changelog
-* Fri Jul 01 2011 Philippe Coval <rzr@gna.org> 0.0.0
-- wip: meego build
-- http://rzr.online.fr/q/amiga
-
 * Wed Mar 23 2011 Zombie Ryushu <ryushu@mandriva.org> 2.3.2-1.gita2b6937.1mdv2011.0
 + Revision: 647758
 - Upgrade to latest git
@@ -124,4 +118,3 @@ rm -rf $RPM_BUILD_ROOT
 - Fix qt4 dep
 - imported package p-uae
 
-#
