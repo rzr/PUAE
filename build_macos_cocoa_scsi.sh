@@ -9,9 +9,10 @@ cd32=" --enable-cd32 "
 a600=" --enable-gayle "
 scsi=" --enable-scsi-device --enable-ncr --enable-a2091 "
 other=" --with-caps --enable-amax --enable-gccopt"
+scg=" --with-libscg-prefix=/opt/schily"
 #
 #
 ./bootstrap.sh
-./configure $base $cd32 $a600 $scsi $other CFLAGS="-m32" LDFLAGS="-m32" CPPFLAGS="-m32"
-#make clean
-#make
+./configure $base $cd32 $a600 $scsi $other $scg CFLAGS="-m32" LDFLAGS="-m32" CPPFLAGS="-m32"
+make clean
+make
