@@ -1,3 +1,5 @@
+# File: p-uae.spec
+# Upstream: ftp://rpmfind.net/linux/Mandriva/devel/cooker/SRPMS/contrib/release/p-uae-2.3.2-1.gita2b6937.1.src.rpm
 %define Werror_cflags	%nil
 %define cdrname		cdrtools
 %define cdrmainvers	2.01
@@ -23,8 +25,8 @@ BuildRequires: desktop-file-utils
 BuildRequires: mesa-libGL-devel
 
 Conflicts: uae
-Obsoletes: uaedev
-Provides: uaedev
+#Obsoletes: uaedev
+#Provides: uaedev
 
 %description
 UAE is a software emulation of the Amiga system hardware, which
@@ -50,17 +52,20 @@ cd src/tools
 aclocal
 autoconf
 
+
 %build
 
 ./bootstrap.sh
 ./configure \
-	 --with-sdl --with-sdl-gl --with-sdl-gfx --with-sdl-sound --enable-drvsnd \
+	--with-sdl --with-sdl-gl --with-sdl-gfx --with-sdl-sound \
+        --enable-drvsnd \
 	--with-gtk \
 	--enable-cd32 \
 	--enable-gayle \
 	--enable-scsi-device --enable-ncr --enable-a2091 \
 	--with-caps --enable-amax
-make
+
+make CFLAGS="-std=gnu99"
 
 
 %install
@@ -68,10 +73,11 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/bin \
 	$RPM_BUILD_ROOT%{_libdir}/uae/amiga/source
 %makeinstall
-cp -pR amiga/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/.
+install -d $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs/
+cp -pRv amiga/programs/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs/
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cp %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop 
+#cp %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop 
 
 
 %clean
@@ -82,13 +88,17 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/*
 %{_bindir}/*
 %{_libdir}/uae
-%{_datadir}/applications/mandriva-%{name}.desktop
+#%{_datadir}/applications/mandriva-%{name}.desktop
 %doc docs/*
 
 
 
 
 %changelog
+* Fri Jul 01 2011 Philippe Coval <rzr@gna.org> 0.0.0
+- wip: meego build
+- http://rzr.online.fr/q/amiga
+
 * Wed Mar 23 2011 Zombie Ryushu <ryushu@mandriva.org> 2.3.2-1.gita2b6937.1mdv2011.0
 + Revision: 647758
 - Upgrade to latest git
@@ -114,3 +124,4 @@ rm -rf $RPM_BUILD_ROOT
 - Fix qt4 dep
 - imported package p-uae
 
+#

@@ -1328,7 +1328,7 @@ void a2091_init (void)
 	int roms[5];
 	struct romlist *rl;
 	struct romdata *rd;
-
+	int i=0;
 	configured = 0;
 	memset (dmacmemory, 0xff, 100);
 	ew (0x00, 0xc0 | 0x01 | 0x10);
@@ -1368,7 +1368,7 @@ void a2091_init (void)
 				rombankswitcher = 1;
 			zfile_fread (rom, rom_size, 1, z);
 			zfile_fclose (z);
-			for (int i = 1; i < slotsize / rom_size; i++)
+			for (i = 1; i < slotsize / rom_size; i++)
 				memcpy (rom + i * rom_size, rom, rom_size);
 			rom_mask = rom_size - 1;
 		}
