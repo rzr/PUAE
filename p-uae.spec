@@ -69,10 +69,10 @@ mkdir -p $RPM_BUILD_ROOT%{_prefix}/bin \
 	$RPM_BUILD_ROOT%{_libdir}/uae/amiga/source
 %makeinstall
 install -d $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs
-cp -pR amiga/programs/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs
+#cp -pR amiga/programs/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cp %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop 
+#mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+#cp %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop 
 
 
 %clean
@@ -83,10 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/*
 %{_bindir}/*
 %{_libdir}/uae
-%{_datadir}/applications/mandriva-%{name}.desktop
+#%{_datadir}/applications/mandriva-%{name}.desktop
 %doc docs/*
-
-
 
 
 %changelog

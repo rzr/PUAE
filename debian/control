@@ -1,5 +1,5 @@
 Source: p-uae
-Section: contrib/otherosfs
+Section: user/contrib/otherosfs
 Priority: optional
 Maintainer: Mustafa Tufan <mustafa.tufan@gmail.com>
 Uploaders: Florian Ernst <florian@debian.org>
