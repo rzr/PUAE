@@ -11,7 +11,7 @@ Name: p-uae
 Version: 0.0.0
 Release: 0
 URL: http://sourceforge.net/projects/uaedev/
-Source0: %{name}-%{version}.tar.gz
+Source0: %{name}_%{version}.orig.tar.gz
 Source1: %{name}.desktop
 License: GPL
 Group: Emulators
