@@ -68,7 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/bin \
 	$RPM_BUILD_ROOT%{_libdir}/uae/amiga/source
 %makeinstall
-cp -pR amiga/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/.
+install -d $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs
+cp -pR amiga/programs/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cp %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop 
