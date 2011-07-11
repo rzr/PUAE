@@ -28,3 +28,6 @@ src/tools/gencomp
 src/tools/gencpu
 src/tools/genlinetoscr
 src/uae
+
+.pc
+#debian/patches

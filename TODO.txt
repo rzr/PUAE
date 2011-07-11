@@ -1,5 +1,4 @@
 Function `getdisplay' implicitly converted to pointer at sdlgfx.c:1739
-Function `get_filesys_unitconfig' implicitly converted to pointer at gtkui.c:468
 Function `buf_out' implicitly converted to pointer at newcpu.c:4259
 Function `getromdatabyzfile' implicitly converted to pointer at memory.c:1875
 Function `uutf8' implicitly converted to pointer at inputrecord.c:102
@@ -8,10 +7,10 @@ Function `my_opentext' implicitly converted to pointer at zfile.c:1530
 Function `unzOpen' implicitly converted to pointer at zfile_archive.c:358
 Function `ua' implicitly converted to pointer at zfile_archive.c:426
 Function `zuncompress' implicitly converted to pointer at zfile_archive.c:691
-Function `getromdatabyzfile' implicitly converted to pointer at cfgfile.c:406
-Function `filesys_createvolname' implicitly converted to pointer at cfgfile.c:1943
-Function `getdisplay' implicitly converted to pointer at picasso96.c:1651
-Function `ua' implicitly converted to pointer at picasso96.c:1865
+Function `getromdatabyzfile' implicitly converted to pointer at cfgfile.c:465
+Function `filesys_createvolname' implicitly converted to pointer at cfgfile.c:2176
+Function `getdisplay' implicitly converted to pointer at picasso96.c:1656
+Function `ua' implicitly converted to pointer at picasso96.c:1870
 Function `ua' implicitly converted to pointer at disk.c:2076
 Function `getromdatabyzfile' implicitly converted to pointer at ar.c:1647
 Function `ua_fs' implicitly converted to pointer at filesys.c:1103
