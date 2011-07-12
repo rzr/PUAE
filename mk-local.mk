@@ -2,6 +2,7 @@
 
 generated_files=\
  src/tools/gencpu \
+ src/uae \
 #}
 
 distclean:
