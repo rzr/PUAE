@@ -1,14 +1,21 @@
 Source: p-uae
-Section: user/contrib/otherosfs
+Section: contrib/otherosfs
 Priority: optional
-Maintainer: Mustafa Tufan <mustafa.tufan@gmail.com>
+Maintainer: Philippe Coval <rzr@gna.org>
+X-Original-Maintainer: Mustafa Tufan <mustafa.tufan@gmail.com>
 Uploaders: Florian Ernst <florian@debian.org>
 Build-Depends: debhelper (>= 5),
- libsdl1.2-dev, zlib1g-dev,
+ libgtk2.0-dev,
+ libsdl1.2-dev, zlib1g-dev, 
  autotools-dev,
  autoconf, 
  automake
-XOrig: libgtk2.0-dev
+X-Harmanntan-Build-Depends: debhelper (>= 5),
+ libqt4-dev,
+ libsdl1.2-dev, zlib1g-dev, 
+ autotools-dev,
+ autoconf, 
+ automake
 Standards-Version: 3.6.2
 
 Package: p-uae

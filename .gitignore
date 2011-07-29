@@ -17,6 +17,8 @@ Makefile
 Makefile.in
 aclocal.m4
 configure
+src/sysconfig.h.in
+
 src/Makefile.in
 src/archivers/dms/Makefile.in
 src/archivers/zip/Makefile.in

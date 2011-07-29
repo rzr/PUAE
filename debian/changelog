@@ -5,6 +5,12 @@ p-uae (0.0.0-0) UNRELEASED; urgency=low
 
  -- Philippe Coval <rzr@gna.org>  Mon, 23 May 2011 11:43:36 +0200
 
+p-uae (0.0.20110702-0~rzr3) natty; urgency=low
+
+  * wip: http://rzr.online.fr/q/emulate
+
+ -- Philippe Coval <rzr@gna.org>  Sat, 02 Jul 2011 14:43:48 +0200
+
 e-uae (0.8.28-2) unstable; urgency=low
 
   * Adjustments to Debian packaging, making this package suitable for
