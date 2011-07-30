@@ -1,5 +1,5 @@
 Source: p-uae
-Section: contrib/otherosfs
+Section: user/contrib/otherosfs
 Priority: optional
 Maintainer: Philippe Coval <rzr@gna.org>
 X-Original-Maintainer: Mustafa Tufan <mustafa.tufan@gmail.com>
@@ -16,6 +16,7 @@ X-Harmanntan-Build-Depends: debhelper (>= 5),
  autotools-dev,
  autoconf, 
  automake
+XOrig: libgtk2.0-dev
 Standards-Version: 3.6.2
 
 Package: p-uae

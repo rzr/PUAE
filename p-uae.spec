@@ -23,17 +23,17 @@ BuildRequires: desktop-file-utils
 BuildRequires: mesa-libGL-devel
 
 Conflicts: uae
-#Obsoletes: uaedev
-#Provides: uaedev
+Obsoletes: uaedev
+Provides: uaedev
 
 %description
 UAE is a software emulation of the Amiga system hardware, which
-enables you to run most available Amiga software. 
-Since it is a software emulation, no extra or special hardware is needed.
-The Amiga hardware is emulated accurately, so that Amiga software is tricked
-into thinking it is running on the real thing.  
-Your computer's display, keyboard, hard disk and mouse 
-assume the roles of their emulated counterparts.
+enables you to run most available Amiga software.  Since it is a
+software emulation, no extra or special hardware is needed.  The Amiga
+hardware is emulated accurately, so that Amiga software is tricked
+into thinking it is running on the real thing.  Your computer's
+display, keyboard, hard disk and mouse assume the roles of their
+emulated counterparts.
 
 Note that to fully emulate the Amiga you need the Amiga KickStart ROM
 images, which are copyrighted and, of course, not included here.
@@ -46,7 +46,8 @@ such as Linux, Mac OS X and BeOS.]
 %prep  
 %setup -q -n p-uae-%{version}
 %patch0 -p1  
-  
+
+
 aclocal -I m4 && automake --foreign --add-missing && autoconf
 cd src/tools
 aclocal
@@ -64,7 +65,6 @@ autoconf
 	--enable-gayle \
 	--enable-scsi-device --enable-ncr --enable-a2091 \
 	--with-caps --enable-amax
-
 make CFLAGS="-std=gnu99"
 
 
@@ -72,6 +72,8 @@ make CFLAGS="-std=gnu99"
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/bin \
 	$RPM_BUILD_ROOT%{_libdir}/uae/amiga/source
+
+
 %makeinstall
 install -d $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs/
 cp -pRv amiga/programs/* $RPM_BUILD_ROOT/%{_libdir}/uae/amiga/programs/
