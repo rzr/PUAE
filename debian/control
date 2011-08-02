@@ -9,7 +9,7 @@ Build-Depends: debhelper (>= 5),
  autotools-dev,
  autoconf, 
  automake
-Orig: libgtk2.0-dev
+X-Upstream-Build-Depends: libgtk2.0-dev
 Standards-Version: 3.6.2
 
 Package: p-uae

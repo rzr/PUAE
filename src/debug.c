@@ -2192,7 +2192,7 @@ void memwatch_dump2 (TCHAR *buf, int bufsize, int num)
 			mwn = &mwnodes[i];
 			if (mwn->size == 0)
 				continue;
-			buf = buf_out (buf, &bufsize, "%2d: %p - %p (%d) %c%c%c",
+			buf = buf_out (buf, &bufsize, "%2d: %08X - %08X (%d) %c%c%c",
 				i, mwn->addr, mwn->addr + (mwn->size - 1), mwn->size,
 				(mwn->rwi & 1) ? 'R' : ' ', (mwn->rwi & 2) ? 'W' : ' ', (mwn->rwi & 4) ? 'I' : ' ');
 			if (mwn->frozen)
