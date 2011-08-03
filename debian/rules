@@ -1,4 +1,4 @@
-#!/usr/bin/make -f
+#! /usr/bin/make -f
 # -*- makefile -*-
 # Simple debian/rules for UAE
 # Based on sample rules  GNU copyright 1997 to 1999 by Joey Hess.
@@ -17,11 +17,13 @@ QT_CFG_OPTIONS += --with-sdl-gfx --with-sdl-sound \
  --with-qt \
  --enable-cd32 \
  --enable-gayle \
- --enable-scsi-device --enable-ncr --enable-a2091 \
  --with-caps --enable-amax \
  #}
 
-CFG_OPTIONS = ${QT_CFG_OPTIONS}
+# comment one of those
+#CFG_OPTIONS?=${SDL_CFG_OPTIONS}
+CFG_OPTIONS?=${QT_CFG_OPTIONS}
+
 
 # Use 'new' bsdsocket emulation on these architectures:
 ifneq (,$(findstring $(DEB_HOST_ARCH),i386 amd64 powerpc))
