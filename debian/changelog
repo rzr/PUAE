@@ -1,3 +1,9 @@
+p-uae (0.0.20110721-0~rzr3) oneiric; urgency=low
+
+  * wip: http://rzr.online.fr/q/handset
+
+ -- Philippe Coval <rzr@gna.org>  Wed, 03 Aug 2011 20:48:20 +0200
+
 p-uae (0.0.0-0) UNRELEASED; urgency=low
 
   * Changed package name to p-uae.
