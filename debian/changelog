@@ -1,13 +1,18 @@
-p-uae (0.0.20110721-0~rzr3) oneiric; urgency=low
+p-uae (0.0.20110812-0~rzr2) oneiric; urgency=low
 
-  * wip: http://rzr.online.fr/q/handset
+  * WIP: http://rzr.online.fr/q/snapshot#p-uae
 
- -- Philippe Coval <rzr@gna.org>  Wed, 03 Aug 2011 20:48:20 +0200
+ -- Philippe Coval <rzr@gna.org>  Fri, 12 Aug 2011 18:17:22 +0200
+
+p-uae (0.0.0-0) UNRELEASED; urgency=low
+
+  * TODO: remove on release
+
+ -- Philippe Coval <rzr@gna.org>  Fri, 12 Aug 2011 18:17:20 +0200
 
 p-uae (0.0.0-0) UNRELEASED; urgency=low
 
   * Changed package name to p-uae.
-  * wip: http://rzr.online.fr/q/emulate
   * http://rzr.online.fr/q/amiga
 
  -- Philippe Coval <rzr@gna.org>  Mon, 23 May 2011 11:43:36 +0200
@@ -41,7 +46,7 @@ uae (0.8.23-1.20040125.1) unstable; urgency=low
 uae (0.8.23-1.20040123.1) unstable; urgency=low
 
   * Updated to 0.8.23
-  * Now build depends on either gtk1.2-dev or gtk2.0-dev
+  * Now build depends on either gtk1.2-dev or gtk2.0-dev 
 
  -- Richard Drummond <uae@rcdrummond.net>  Fri, 23 Jan 2004 14:37:25 -0500
 

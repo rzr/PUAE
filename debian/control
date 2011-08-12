@@ -9,7 +9,7 @@ Build-Depends: debhelper (>= 5),
  autotools-dev,
  autoconf, 
  automake
-X-Upstream-Build-Depends: libgtk2.0-dev
+Orig: libgtk2.0-dev
 Standards-Version: 3.6.2
 
 Package: p-uae
@@ -28,3 +28,4 @@ Description: Unix Amiga Emulator
  material and may not be freely distributed (so don't ask me for a copy).
  .
  Homepage: https://github.com/GnoStiC/PUAE
+
