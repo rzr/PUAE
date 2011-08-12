@@ -1,0 +1,7 @@
+#file://./.gitignore
+*~
+MANIFEST
+*.o
+config.log
+config.guess
+debian/p-uae/

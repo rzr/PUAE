@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=UAE
+Comment=Amiga Emulator
+Exec=%{_bindir}/uae
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Emulator;
