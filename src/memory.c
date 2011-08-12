@@ -87,7 +87,7 @@ uae_u32 allocated_cardmem;
 uae_u8 ce_banktype[65536];
 uae_u8 ce_cachable[65536];
 
-#if defined(CPU_64_BIT)
+#if defined(__x86_64__)
 uae_u32 max_z3fastmem = 2048UL * 1024 * 1024;
 #else
 uae_u32 max_z3fastmem = 512 * 1024 * 1024;
@@ -143,7 +143,7 @@ __inline__ void byteput (uaecptr addr, uae_u32 b)
 int addr_valid (TCHAR *txt, uaecptr addr, uae_u32 len)
 {
 	addrbank *ab = &get_mem_bank(addr);
-	if (ab == 0 || !(ab->flags & ABFLAG_RAM) || addr < 0x100 || len < 0 || len > 16777215 || !valid_address (addr, len)) {
+	if (ab == 0 || !(ab->flags & (ABFLAG_RAM | ABFLAG_ROM)) || addr < 0x100 || len < 0 || len > 16777215 || !valid_address (addr, len)) {
 		write_log ("corrupt %s pointer %x (%d) detected!\n", txt, addr, len);
 		return 0;
 	}

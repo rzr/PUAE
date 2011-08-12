@@ -1,7 +1,0 @@
-#!/bin/sh
-
-set -e
-
-update-alternatives --install /usr/bin/uae uae /usr/bin/p-uae 80
-
-#DEBHELPER#

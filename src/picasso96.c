@@ -55,6 +55,7 @@ int p96hack_vpos, p96hack_vpos2, p96refresh_active;
 #include "picasso96.h"
 #include "uae_endian.h"
 #include "traps.h"
+#include "misc.h"
 
 #define NOBLITTER 0
 #define NOBLITTER_BLIT 0
@@ -2200,7 +2201,7 @@ static uae_u32 REGPARAM2 picasso_SetPanning (TrapContext *ctx)
 	return 1;
 }
 
-#ifdef CPU_64_BIT
+#ifdef __x86_64__
 static void do_xor8 (uae_u8 *p, int w, uae_u32 v)
 {
 	while (ALIGN_POINTER_TO32 (p) != 7 && w) {
@@ -2946,7 +2947,7 @@ void picasso_handle_hsync (void)
 		return;
 	if (WIN32GFX_IsPicassoScreen () && isvsync ()) {
 		int vbs = DirectDraw_GetVerticalBlankStatus ();
-		if (vbs == 0) {
+		if (vbs <= 0) {
 			if (p96hsync > 0)
 				p96hsync = -1;
 			return;
@@ -2966,12 +2967,18 @@ void picasso_handle_hsync (void)
 
 void init_hz_p96 (void)
 {
-	if (currprefs.win32_rtgvblankrate < 0 || isvsync ()) 
-		p96vblank = DirectDraw_CurrentRefreshRate ();
-	else if (currprefs.win32_rtgvblankrate == 0)
-		p96vblank = vblank_hz;
-	else
-		p96vblank = currprefs.win32_rtgvblankrate;
+        if (currprefs.win32_rtgvblankrate < 0 || isvsync ())  {
+                double rate = getcurrentvblankrate ();
+                if (rate < 0)
+                        p96vblank = (int)(vblank_hz + 0.5);
+                else
+                        p96vblank = (int)(getcurrentvblankrate () + 0.5);
+        } else if (currprefs.win32_rtgvblankrate == 0) {
+                p96vblank = (int)(vblank_hz + 0.5);
+        } else {
+                p96vblank = currprefs.win32_rtgvblankrate;
+        }
+
 	if (p96vblank <= 0)
 		p96vblank = 60;
 	if (p96vblank >= 300)
