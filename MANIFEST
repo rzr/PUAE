@@ -2,7 +2,6 @@ CHANGES
 COPYING
 Makefile.am
 README
-TODO.txt
 amiga/programs/UAE_German
 amiga/programs/UAE_German.info
 amiga/programs/ahidriver.zip
@@ -38,11 +37,10 @@ bronx_.sh
 build_linux_nojit.sh
 build_linux_qt.sh
 build_macos_cocoa.sh
+build_macos_cocoa_scsi.sh
 build_macos_qt.sh
 build_macos_xcode.sh
 build_pandora_gtk.sh
-config.guess
-config.sub
 configure.in
 depcomp
 docs/bsdsocket.txt
@@ -72,8 +70,6 @@ m4/type_socklen_t.m4
 m4/uintmax_t.m4
 missing
 mkinstalldirs
-p-uae.desktop
-p-uae.spec
 release_.sh
 shm.sh
 src/ChangeLog
@@ -261,6 +257,7 @@ src/gui-none/nogui.c
 src/gui-qt/Makefile.am
 src/gui-qt/PUAE.pro
 src/gui-qt/PUAE.pro.user
+src/gui-qt/PUAE.pro.user.2.1pre1
 src/gui-qt/puae_bridge.cpp
 src/gui-qt/puae_bridge.h
 src/gui-qt/puae_mainwindow.cpp

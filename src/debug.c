@@ -2192,7 +2192,7 @@ void memwatch_dump2 (TCHAR *buf, int bufsize, int num)
 			mwn = &mwnodes[i];
 			if (mwn->size == 0)
 				continue;
-			buf = buf_out (buf, &bufsize, "%2d: %p - %p (%d) %c%c%c",
+			buf = buf_out (buf, &bufsize, "%2d: %08X - %08X (%d) %c%c%c",
 				i, mwn->addr, mwn->addr + (mwn->size - 1), mwn->size,
 				(mwn->rwi & 1) ? 'R' : ' ', (mwn->rwi & 2) ? 'W' : ' ', (mwn->rwi & 4) ? 'I' : ' ');
 			if (mwn->frozen)
@@ -2527,11 +2527,11 @@ static uaecptr get_base (const uae_char *name)
 		b = &get_mem_bank (v2);
 		if (!b || !b->check (v2, 20))
 			goto fail;
-		if (b->flags != ABFLAG_ROM && b->flags != ABFLAG_RAM)
-			return 0;
-		p = b->xlateaddr (v2);
-		if (!memcmp (p, name, strlen (name) + 1))
-			return v;
+		if (b->flags == ABFLAG_ROM || b->flags == ABFLAG_RAM) {
+			p = b->xlateaddr (v2);
+			if (!memcmp (p, name, strlen (name) + 1))
+				return v;
+		}
 	}
 	return 0;
 fail:
