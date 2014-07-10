@@ -1,16 +1,29 @@
-#!/usr/bin/make -f
+#! /usr/bin/make -f
 # -*- makefile -*-
 # Simple debian/rules for UAE
 # Based on sample rules  GNU copyright 1997 to 1999 by Joey Hess.
 
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 
 DEB_HOST_ARCH_OS	?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 DEB_HOST_GNU_CPU	?= $(shell dpkg-architecture -qDEB_HOST_GNU_CPU)
 DEB_HOST_ARCH		?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
 # Build only the SDL target for just now
-CFG_OPTIONS += --with-sdl-gfx --with-sdl-sound
+SDL_CFG_OPTIONS += --with-sdl-gfx --with-sdl-sound
+
+QT_CFG_OPTIONS += --with-sdl-gfx --with-sdl-sound \
+ --enable-drvsnd \
+ --with-qt \
+ --enable-cd32 \
+ --enable-gayle \
+ --with-caps --enable-amax \
+ #}
+
+# comment one of those
+#CFG_OPTIONS?=${SDL_CFG_OPTIONS}
+CFG_OPTIONS?=${QT_CFG_OPTIONS}
+
 
 # Use 'new' bsdsocket emulation on these architectures:
 ifneq (,$(findstring $(DEB_HOST_ARCH),i386 amd64 powerpc))

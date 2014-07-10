@@ -1,3 +1,15 @@
+p-uae (0.0.20110812-0~rzr2) oneiric; urgency=low
+
+  * WIP: http://rzr.online.fr/q/snapshot#p-uae
+
+ -- Philippe Coval <rzr@gna.org>  Fri, 12 Aug 2011 18:17:22 +0200
+
+p-uae (0.0.0-0) UNRELEASED; urgency=low
+
+  * TODO: remove on release
+
+ -- Philippe Coval <rzr@gna.org>  Fri, 12 Aug 2011 18:17:20 +0200
+
 p-uae (0.0.0-0) UNRELEASED; urgency=low
 
   * Changed package name to p-uae.
